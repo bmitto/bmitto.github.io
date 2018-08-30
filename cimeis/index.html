@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Baringo - CIMEIS</title>
+	<meta charset="utf-8", name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css">
+	<script type="text/javascript" src = "https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+	<script type="text/javascript" src = "data/jquery-3.3.1.min.js"></script>
+	<!--<script src="data/Leaflet.CountrySelect.js"></script>-->
+	<script src="data/Leaflet.CountrySelect.js"></script>
+	<style type="text/css">
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		#map {
+			width: 600px;
+			height: 400px;
+		}
+	</style>
+</head>
+<body>
+<div id="map"></div>
+<!--<script type="text/javascript" src = "data/wards.geojson"></script>-->
+<script type="text/javascript" src = "data/subcounty.geojson"></script>
+<script type="text/javascript" src = "data/facility.geojson"></script>
+<script type="text/javascript" src = "data/wards.geojson"></script>
+<script type="text/javascript">
+	var map = L.map ('map').setView([0.574, 35.979], 8);
+	var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+	var CartoDB = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+	var select = L.countrySelect().addTo(map);
+	select.on('change', function(e){
+		if (e.feature==undefined){
+			return;
+		}
+		var subcounty = L.geoJson(e.feature);
+		if (this.previousCountry != null) {
+			map.removeLayer(this.previousCountry);
+		}
+		this.previousCountry = subcounty;
+		map.addLayer(subcounty);
+		map.fitBounds(subcounty.getBounds());
+	});
+	//var ward = L.geoJson(wards).addTo(map);
+	//var subcounty = L.geoJson(subcounty).addTo(map);
+	var HF = L.geoJson(facility, {pointToLayer: function(feature, latlng){
+		var marker = L.marker(latlng, {icon: L.icon ({iconUrl: 'data/facility.png'})}); 
+		marker.bindPopup("<b> Facility: </b>"+feature.properties.Facility+"<br/><b> Bed Capacity: </b>"+feature.properties.BedCapacity+"<br/><b> Staff Count: </b>"+feature.properties.NumStaff+"<br/><b> Has Electricity: </b>"+(feature.properties.HasElectricity).toUpperCase()+"<br/><b> Ongoing Projects: </b>"+feature.properties.OngoingProjects+"<br/><b> Photo: </b> <a href='"+feature.properties.Pic+"' target=\"_blank\">"+"<img src='"+feature.properties.Pic+"&previewImage=true'</img></a>");
+		return marker;
+	}}).addTo(map);
+
+	L.control.layers({"Open Street Map": OSM, "Carto DB": CartoDB}, {"Facility": HF}).addTo(map);
+
+</script>
+
+</body>
+</html>

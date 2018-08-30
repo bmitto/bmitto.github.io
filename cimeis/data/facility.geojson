@@ -1,0 +1,10 @@
+var facility = {
+"type": "FeatureCollection",
+"name": "facility",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "SubCounty": "Mogotio", "Ward": "Emining", "Facility": "Emining Health Centre", "MFLCode": 14446, "ProgramArea": "preventive_promotive", "Functional": "yes", "BedCapacity": 6, "NumStaff": 56, "HasElectricity": "yes", "OngoingProjects": 1, "Lat": 0.143658602, "Long": 35.88685874, "Pic": "https:\/\/cimeis-pilot.appspot.com\/view\/binaryData?blobKey=CIMEIS_Baseline_Pilot_Health_V2%5B%40version%3Dnull+and+%40uiVersion%3Dnull%5D%2Fhealth_facility_baseline%5B%40key%3Duuid%3A14e20c61-75c5-43e8-a7b1-d68536bf211e%5D%2Fpic" }, "geometry": { "type": "Point", "coordinates": [ 35.88685874, 0.143658602 ] } },
+{ "type": "Feature", "properties": { "SubCounty": "Mogotio", "Ward": "Mogotio", "Facility": "Kipsogon Dispensary", "MFLCode": 17099, "ProgramArea": "preventive_promotive", "Functional": "yes", "BedCapacity": 0, "NumStaff": 30, "HasElectricity": "yes", "OngoingProjects": 0, "Lat": -0.064604657, "Long": 35.91776692, "Pic": "https:\/\/cimeis-pilot.appspot.com\/view\/binaryData?blobKey=CIMEIS_Baseline_Pilot_Health_V2%5B%40version%3Dnull+and+%40uiVersion%3Dnull%5D%2Fhealth_facility_baseline%5B%40key%3Duuid%3Ab461d487-9857-429a-a1d3-d7c6c1abb9df%5D%2Fpic" }, "geometry": { "type": "Point", "coordinates": [ 35.91776692, -0.064604657 ] } },
+{ "type": "Feature", "properties": { "SubCounty": "Mogotio", "Ward": "Mogotio", "Facility": "Mogotio Subcounty Hospital", "MFLCode": 20005, "ProgramArea": "curative_rehabilitative", "Functional": "yes", "BedCapacity": 40, "NumStaff": 50, "HasElectricity": "no", "OngoingProjects": 2, "Lat": -0.027158953, "Long": 35.9555599, "Pic": "https:\/\/cimeis-pilot.appspot.com\/view\/binaryData?blobKey=CIMEIS_Baseline_Pilot_Health_V2%5B%40version%3Dnull+and+%40uiVersion%3Dnull%5D%2Fhealth_facility_baseline%5B%40key%3Duuid%3A0dbc3dca-6f9d-4c8c-81da-42b923ab7119%5D%2Fpic" }, "geometry": { "type": "Point", "coordinates": [ 35.9555599, -0.027158953 ] } }
+]
+}
