@@ -61,7 +61,7 @@
 			maxZoom: 19
 		});
 
-		var select = L.countrySelect().addTo(map);
+		/*var select = L.countrySelect().addTo(map);
 		select.on('change', function (e) {
 			if (e.feature == undefined) {
 				return;
@@ -77,7 +77,7 @@
 			this.previousCountry = subcounty;
 			map.addLayer(subcounty);
 			map.fitBounds(subcounty.getBounds());
-		});
+		});*/
 
 		function highlightFeature(e) {
 			var layer = e.target;
@@ -130,7 +130,7 @@
 			return this._div
 		};
 		info.update = function (props) {
-			this._div.innerHTML = '<h4> Ward Name </h4>' + (props ? + '<b>' + (props.Ward).toUpperCase() + '</b>' : 'Hover over a ward');
+			this._div.innerHTML = '<h4> Administrative Units </h4>' + (props ? '<b>Sub County: ' + (props.Constituen).toUpperCase() + '</b>' + '<br/><b>Ward: ' + (props.Ward).toLowerCase() + '</b>':'');
 		};
 		info.addTo(map);
 
