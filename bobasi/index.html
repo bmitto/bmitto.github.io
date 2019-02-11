@@ -98,7 +98,7 @@
         }).addTo(map);
 
 
-        L.control.layers({ "Open Street Map": OSM, "Mapbox Satellite": MSat, "Mapbox Light": MBox, "Carto DB": CartoDB },{ "Wards": ward }).addTo(map);
+        L.control.layers({ "Open Street Map": OSM, "Mapbox Satellite": MSat, "Mapbox Light": MBox, "Carto DB": CartoDB },{"Facilities":HF, "Wards": ward }).addTo(map);
 
         var info = L.control({ position: 'topleft' });
         info.onAdd = function (map) {
