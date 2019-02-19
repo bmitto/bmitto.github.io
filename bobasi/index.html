@@ -114,7 +114,7 @@
 
         var ward = L.geoJson(wards, {
             style: function (feature) {
-                return { fillColor: 'grey', weight: 1, opacity: 1, color: 'white', dashArray: '5', fillOpacity: .5 }; //#00CD66, #CD2990
+                return { fillColor: 'grey', weight: 1, opacity: 1, color: 'white', dashArray: '5', fillOpacity: 0 }; //#00CD66, #CD2990
             }, onEachFeature: function (feature, layer) {
                 layer.on({
                     mouseover: highlightFeature,
