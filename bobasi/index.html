@@ -107,7 +107,7 @@
         }
         var geoData = geojson2heat(facility, 20); // min 0 - max infinity, but try <=30
 
-        var heat = new L.heatLayer(geoData, { radius: 25, blur: 15, maxZoom: 30 }); //range [10, 50]
+        var heat = new L.heatLayer(geoData, { radius: 25, blur: 15, maxZoom: 17 }); //range [10, 50]
 
 
         /* will explore on how to make icons change based on zoom level
