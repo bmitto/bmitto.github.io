@@ -242,7 +242,7 @@
                     });
                     var basemaps = {"Light Gray": MBox, "Dark":CartoDB, "Stamen": stamen, "Open Street Map": osm}
                     // initialize the map instance, set the view and zoom levels
-                    var map = L.map("mapid", {center: [0.718124, 35.895375], zoom:9, layers: [MBox, CartoDB, stamen, osm]});
+                    var map = L.map("mapid", {center: [0.718124, 35.895375], zoom:9, layers: [osm]});
                     L.control.layers(basemaps).addTo(map);
 
                     var markersLayer = new L.LayerGroup();
