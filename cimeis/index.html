@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CIMEIS</title>
+    <title>Baringo CIMEIS - GIS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- include leaflet CSS file -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css">
@@ -242,8 +242,26 @@
                     });
                     var basemaps = {"Light Gray": MBox, "Dark":CartoDB, "Stamen": stamen, "Open Street Map": osm}
                     // initialize the map instance, set the view and zoom levels
-                    var map = L.map("mapid", {center: [0.718124, 35.895375], zoom:9, layers: [osm]});
-                    L.control.layers(basemaps).addTo(map);
+                    var map = L.map("mapid", {center: [0.718124, 35.895375], zoom:9, layers:[osm]});
+                    // load wards by default
+                    var subcounty = L.geoJson(ward, {
+                            // style the ward color and line appearance
+                            style: {"color":"green", "weight": 2, "opacity":1, "dashArray":'4', "fillOpacity":0, "fillColor":'white'},
+                            // set popup to ward name
+                            onEachFeature: function (feature, layer) {
+                                layer.bindPopup (feature.properties.ward),
+                                layer.on({
+                                    mouseover: highlightFeature,
+                                    mouseout: function (e) {
+                                        subcounty.resetStyle(e.target);
+                                        info.update();
+                                    },
+                                    click: zoomToFeature
+                                });
+                            }
+                        }).addTo(map);
+
+                    L.control.layers(basemaps, {"All Wards": subcounty}).addTo(map);
 
                     var markersLayer = new L.LayerGroup();
                     //These are the LayerGroups for HealthData for the 4 project statuses
@@ -344,7 +362,9 @@
                                     marker.bindPopup("<b> Name:</b>"+realdata.info[x].ProjectName+"<br/>\
                                                     <b> Program:</b>"+realdata.info[x].ProgrammeName+"<br/>\
                                                     <b> Projects Status:</b>"+realdata.info[x].Status+"<br/>\
-                                                    <b> Remarks:</b>"+realdata.info[x].Remarks);
+                                                    <b> Remarks:</b>"+realdata.info[x].Remarks+"<br/>\
+                                                    <b> More info:</b> <a href='http://icis.co.ke/#/indicator' target='_blank'> Click here </a> " + "<br/>\
+                                                    <b> ProjectID:</b>" +realdata.info[x].ProjectId);
 
                                     //Add Marker to the LayerGroup
                                     if(action === "add"){
@@ -485,7 +505,7 @@
                     info.update = function(props) {
                         this._div.innerHTML = '<h4> Administrative Units</h4>' + 
                         (props?'<b>' + props.subcounty + '</b>' + 
-                        '<br>' + props.ward:'Select sub county <br/> then hover over ward')
+                        '<br>' + props.ward:'Select sub county <br> then Hover over ward')
                     }
                     info.addTo(map);
 
